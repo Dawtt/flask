@@ -38,8 +38,8 @@ import random
 from flask import jsonify
 
 
-dbfile = '/var/www/flask/p/track_metadata.db'
-#  dbfile = '/Users/dw/pi/www/flask/p/track_metadata.db'
+#dbfile = '/var/www/flask/p/track_metadata.db'
+dbfile = '/Users/dw/Dropbox/GitHub/pi/www/flask/p/track_metadata.db'
 
 #/Users/dw/pi/www/flask/p/lastfm_similars.db
 
@@ -101,8 +101,13 @@ def get_artists_flask_tut():
 
 def get_all_songs_by_artist(artist):
     print("query to db is: '%s'" % artist)
+    tracklist = []
     for tracknames in query_db("select distinct title from songs where artist_name = '%s';" % artist):
         print(tracknames)
+        print(type(tracknames))
+        print(tracknames[0])
+        tracklist.append(tracknames[0])
+    return tracklist
 
 def get_related_song_flask(tid):
     print("attempting flask related song query style")
@@ -123,6 +128,8 @@ def get_artist_from_track_id(tid):
     sql = "SELECT artist_name FROM songs WHERE track_id = '%s'" % tid
     res = conn.execute(sql)
     data = res.fetchone()[0]
+    print("going to print data type")
+    print(type(data))
     print(data)
     return data
 
@@ -149,6 +156,7 @@ def get_related_track(tid):
     data = res.fetchone()[0]
     # print(data)
     # random_choice = secrets.choice(data)
+    print(type(data))
     value = random.randint(0, 5)
     return data[value]
     # return data.partition(',')[0]

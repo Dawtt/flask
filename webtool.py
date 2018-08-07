@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, jsonify
+from flask import Flask, redirect, url_for, jsonify, request
 from p import id_recs_db_controller, artist_song_db_controller
 
 
@@ -24,6 +24,33 @@ def getRelatedTrack(trackid):
 	print("so back to related track")
 	print(type(song_to_return))
 	return song_to_return
+
+
+# @app.route('/result', methods=['GET', 'POST'])
+# def result():
+# 	trackid = request.args.get('songid', None)
+# 	print(type(request))
+# 	print(request)
+# 	#print(trackid.args)
+# 	print(trackid)
+# 	print(type(trackid))
+# 	if trackid:
+# 		return trackid
+# 	return "No place information is given"
+
+@app.route('/result', methods = ['GET', 'POST'])
+def result():
+	if request.method == 'GET':
+		place = request.args.get('place', None)
+		outputrec = id_recs_db_controller.getRelatedTrack(place)
+		print(type(outputrec))
+		print(outputrec)
+		if outputrec:
+			return outputrec
+		return "No outputrec information is given"
+
+if __name__ == '__main__':
+	app.run(debug = True)
 
 
 ###		ARTIST & TRACKNAME DATABASE CONTROLS

@@ -38,8 +38,8 @@ import secrets
 from flask import jsonify
 from marshmallow import Schema, fields
 
-# dbfile = '/var/www/flask/p/lastfm_similars.db'
-dbfile = '/Users/dw/pi/www/flask/p/lastfm_similars.db'
+#dbfile = '/var/www/flask/p/lastfm_similars.db'
+dbfile = '/Users/dw/Dropbox/GitHub/pi/www/flask/p/lastfm_similars.db'
 
 #/Users/dw/pi/www/flask/p/lastfm_similars.db
 
