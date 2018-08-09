@@ -1,8 +1,9 @@
 from flask import Flask, redirect, url_for, jsonify, request
 from p import id_recs_db_controller, artist_song_db_controller
-
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 subset_path = "/Users/dw/pi/www/flask/p/subset"
@@ -64,8 +65,8 @@ def return_artist(trackid):
 def get_artist_list():
 	# artists =  meta.get_all_artists()
 	# return artists
-	artist_song_db_controller.get_artists_flask_tut()
-	return jsonify(artist_song_db_controller.get_artists_flask_tut())
+	artist_list = artist_song_db_controller.get_artists_flask_tut()
+	return jsonify(artist_list)
 
 @app.route("/getsongsfromartist/<artist>")
 def get_songs_from_artist(artist):

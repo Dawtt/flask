@@ -78,7 +78,7 @@ def getRelatedTrack(tid):
     # get the top 5 matched id's in a list
     data2 = data.split(',')[0:9:2]
     # return a random id from the top 5 matches last
-    value = random.randint(0,5)
+    value = random.randint(0, len(data2))
     return data2[value]
 
 

@@ -95,9 +95,11 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 def get_artists_flask_tut():
+    artistlist = []
     for artist_name in query_db('select distinct artist_name from songs order by artist_name;'):
-        print(artist_name)
-        return artist_name
+        print(artist_name[0])
+        artistlist.append(artist_name[0])
+    return artistlist
 
 def get_all_songs_by_artist(artist):
     print("query to db is: '%s'" % artist)
