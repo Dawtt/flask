@@ -35,6 +35,7 @@ from sqlite3 import Error
 from flask import g
 # import secrets ### requires python 3.6^
 import random
+import json
 from flask import jsonify
 
 
@@ -95,11 +96,28 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 def get_artists_flask_tut():
+    print("running get_artists_flask_tut")
     artistlist = []
+    # artist_json = {}
+    count = 0
     for artist_name in query_db('select distinct artist_name from songs order by artist_name;'):
-        print(artist_name[0])
-        artistlist.append(artist_name[0])
+        # print(artist_name[0])
+        # artistlist = artistlist+"artist="+artist_name[0]+",\n"
+        # artistlist.append("artist=")
+        # artistlist.append(artist_name[0])
+        item = {"artist": artist_name[0]}
+        artistlist.append(item)
+        # print(artistlist)
+        # artistlist.append(",")
+        # artistlist.append(
+
+        # artist_json['name'] = artist_name[0]
+    print(artistlist)
     return artistlist
+    json_data = json.dumps(artistlist)
+    return json_data
+    # print(artistlist)
+    # return artistlist
 
 def get_all_songs_by_artist(artist):
     print("query to db is: '%s'" % artist)
