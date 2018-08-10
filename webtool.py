@@ -66,7 +66,10 @@ def get_artist_list():
 	# artists =  meta.get_all_artists()
 	# return artists
 	artist_list = artist_song_db_controller.get_artists_flask_tut()
-	return jsonify(artist_list)
+	print(type(artist_list))
+	artist_list = jsonify(artist_list)
+	print(type(artist_list))
+	return artist_list
 
 @app.route("/getsongsfromartist/<artist>")
 def get_songs_from_artist(artist):
